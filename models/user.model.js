@@ -11,7 +11,7 @@ userSchema.methods.generateJWT = function() {
         _id: this._id,
         number: this.number,
         name: this.name,
-    }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
+    }, "aazertyuhjkllmmp", { expiresIn: '7d' });
 };
 
 module.exports.User = model('User', userSchema);

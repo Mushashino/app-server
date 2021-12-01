@@ -2,7 +2,7 @@ require('dotenv/config')
 const mongoose = require('mongoose');
 const app = require('./app');
 
-mongoose.connect(process.env.MONGODB_URI,
+mongoose.connect("mongodb+srv://stanislas:0826016607makengo@cluster0.kysug.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   { useNewUrlParser: true,
     })
   .then(() => console.log('Connexion à MongoDB réussie !'))

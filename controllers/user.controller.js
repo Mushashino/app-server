@@ -27,22 +27,22 @@ module.exports.signUp = async (req, res) => {
 
     
 
-    // cosnt messagebird = require('messagebird')('532WMkHslzjdLzCbVFsnxsGFC');
+    const messagebird = require('messagebird')('8D5avrn5bgEU2CTGtgwGT8pyF');
 
-    // const params = {
-    //   'originator': 'Mushashino',
-    //   'recipients': [
-    //     '+243842613999'
-    // ],
-    //   'body': 'Code de vérification : '+OTP
-    // };
+    const params = {
+      'originator': 'Mushashino',
+      'recipients': [
+        '+243825937168'
+    ],
+      'body': 'Code de vérification : '+OTP
+    };
 
-    // messagebird.messages.create(params, function (err, response) {
-    //   if (err) {
-    //     return console.log(err);
-    //   }
-    //   console.log(response);
-    // });
+    messagebird.messages.create(params, function (err, response) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(response);
+    });
 
     const salt = await bcrypt.genSalt(10);
     otp.otp = await bcrypt.hash(otp.otp, salt);

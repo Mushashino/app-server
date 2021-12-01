@@ -98,3 +98,9 @@ module.exports.login = async(req, res) =>{
  
     
 }
+
+
+module.exports.hello = async(req, res) =>{
+
+    return res.status(200).send('Mushashino API');
+}

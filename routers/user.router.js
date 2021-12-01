@@ -5,4 +5,4 @@ router.route('/signup').post(signUp);
 router.route('/signup/verify').post(verifyOtp);
 router.route('/login').post(login);
 
-module.exports = router;
+module.exports = router; 

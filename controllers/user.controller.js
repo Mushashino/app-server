@@ -22,7 +22,8 @@ module.exports.signUp = async (req, res) => {
 
     const otp = new Otp({
         number: number,
-        otp: OTP
+        otp: OTP,
+        name: name
     });
 
 
@@ -65,14 +66,13 @@ module.exports.verifyOtp = async(req, res) =>{
         const validUser = await bcrypt.compare(req.body.otp, rightOtpFind.otp);
         
         if(rightOtpFind.number === req.body.number && validUser) {
-            const user = new User(_.pick(req.body, ['number', 'name']));
             const result = await User.findOne({ number: req.body.number });
-            const OTPDelete = await Otp.deleteMany({ number: rightOtpFind.number });
             return res.status(200).send({
                 message: 'User login Successfully',
                 data: result,
                 token: jwt.sign({ name:result.name, number: result.number, _id: result._id }, 'RESTFULAPIs')
             }); 
+
         }else{
             return res.status(400).send('Your OTP is Wrong');
         }
@@ -89,7 +89,10 @@ module.exports.verifyOtp = async(req, res) =>{
         const validUser = await bcrypt.compare(req.body.otp, rightOtpFind.otp);
         
         if(rightOtpFind.number === req.body.number && validUser) {
-            const user = new User(_.pick(req.body, ['number', 'name']));
+            const user = new User({
+                number: req.body.number,
+                name: rightOtpFind.name
+            });
             const result = await user.save();
             const OTPDelete = await Otp.deleteMany({ number: rightOtpFind.number });
             return res.status(200).send({
@@ -119,7 +122,8 @@ module.exports.login = async(req, res) =>{
     
         const otp = new Otp({
             number: number,
-            otp: OTP
+            otp: OTP,
+            name: user.name
         });
     
         

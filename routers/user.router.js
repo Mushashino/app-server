@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { signUp, verifyOtp, login, hello } = require('../controllers/user.controller');
 
 router.route('/signup').post(signUp);
-router.route('/signup/verify').post(verifyOtp);
+router.route('/verify').post(verifyOtp);
 router.route('/login').post(login);
 router.route('/').get(hello);
 

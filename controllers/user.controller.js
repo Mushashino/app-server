@@ -128,12 +128,12 @@ module.exports.login = async(req, res) =>{
     
         
     
-        const messagebird = require('messagebird')('8D5avrn5bgEU2CTGtgwGT8pyF');
+        const messagebird = require('messagebird')('SyyKRakJnhvZuKaWxqLpicppQ');
 
         const params = {
           'originator': 'Mushashino',
           'recipients': [
-            '+243825937168'
+            '+243970063348'
         ],
           'body': 'Code de vérification : '+OTP
         };

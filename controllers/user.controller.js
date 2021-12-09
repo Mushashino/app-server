@@ -27,27 +27,30 @@ module.exports.signUp = async (req, res) => {
     });
 
 
-    const messagebird = require('messagebird')('SyyKRakJnhvZuKaWxqLpicppQ');
+    // const messagebird = require('messagebird')('SyyKRakJnhvZuKaWxqLpicppQ');
 
-    const params = {
-      'originator': 'Mushashino',
-      'recipients': [
-        '+243970063348'
-    ],
-      'body': 'Code de vérification : '+OTP
-    };
+    // const params = {
+    //   'originator': 'Mushashino',
+    //   'recipients': [
+    //     '+243970063348'
+    // ],
+    //   'body': 'Code de vérification : '+OTP
+    // };
 
-    messagebird.messages.create(params, function (err, response) {
-      if (err) {
-        return console.log(err);
-      }
-      console.log(response);
-    });
+    // messagebird.messages.create(params, function (err, response) {
+    //   if (err) {
+    //     return console.log(err);
+    //   }
+    //   console.log(response);
+    // });
 
     const salt = await bcrypt.genSalt(10);
     otp.otp = await bcrypt.hash(otp.otp, salt);
     const result = await otp.save();
-    return res.status(200).send("OTP Send Successfully");
+    return res.status(200).send({
+        message: 'OTP Sent Successfully',
+        otp: OTP,
+    });
     
 
 } 
@@ -128,27 +131,30 @@ module.exports.login = async(req, res) =>{
     
         
     
-        const messagebird = require('messagebird')('SyyKRakJnhvZuKaWxqLpicppQ');
+        // const messagebird = require('messagebird')('SyyKRakJnhvZuKaWxqLpicppQ');
 
-        const params = {
-          'originator': 'Mushashino',
-          'recipients': [
-            '+243970063348'
-        ],
-          'body': 'Code de vérification : '+OTP
-        };
+        // const params = {
+        //   'originator': 'Mushashino',
+        //   'recipients': [
+        //     '+243970063348'
+        // ],
+        //   'body': 'Code de vérification : '+OTP
+        // };
     
-        messagebird.messages.create(params, function (err, response) {
-          if (err) {
-            return console.log(err);
-          }
-          console.log(response);
-        });
+        // messagebird.messages.create(params, function (err, response) {
+        //   if (err) {
+        //     return console.log(err);
+        //   }
+        //   console.log(response);
+        // });
     
         const salt = await bcrypt.genSalt(10);
         otp.otp = await bcrypt.hash(otp.otp, salt);
         const result = await otp.save();
-        return res.status(200).send("OTP Send Successfully");
+        return res.status(200).send({
+            message: 'OTP Sent Successfully',
+            otp: OTP,
+        });
 
         
     } else {
